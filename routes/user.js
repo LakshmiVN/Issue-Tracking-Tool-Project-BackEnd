@@ -18,7 +18,7 @@ module.exports.setRouter = (app) => {
     /**
      * @apiGroup users
      * @apiVersion  1.0.0
-     * @api {post} /api/v1/users/signup api for user login.
+     * @api {post} /api/v1/users/signup api for user signup.
      *
      * @apiParam {string} email email of the user. (body params) (required)
      * @apiParam {string} password password of the user. (body params) (required)

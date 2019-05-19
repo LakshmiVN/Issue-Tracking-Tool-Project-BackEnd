@@ -1,10 +1,10 @@
 let appConfig = {};
 
-appConfig.port = 3000;
+appConfig.port = process.env.port || 8081;
 appConfig.allowedCorsOrigin = "*";
 appConfig.env = "dev";
 appConfig.db = {
-    uri: 'mongodb://127.0.0.1:27017/issueTrackerDB',
+    uri: "mongodb+srv://VNLakshmi:czeL38HWJioKVS4G@cluster0-9pwmu.mongodb.net/test?retryWrites=true",
 }
 appConfig.apiVersion = '/api/v1';   
 

@@ -19,10 +19,16 @@ app.use(globalErrorMiddleware.globalErrorHandler);
 app.use(express.static(path.join(__dirname, 'client')));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
+app.get("/apidoc", (req, res) => {
+  res.sendfile(path.join(__dirname + '/apidoc/index.html'));
+  })
+  app.get("/eventdoc", (req, res) => {
+  res.sendfile(path.join(__dirname + '/eventdoc/index.html'));
+  })
+
+
 const modelsPath = './models';
-const controllersPath = './controllers';
-const libsPath = './libs';
-const middlewaresPath = './middlewares';
+
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -109,7 +115,12 @@ function onListening() {
     : 'port ' + addr.port;
   ('Listening on ' + bind);
   logger.info('server listening on port' + addr.port, 'serverOnListeningHandler', 10);
-  let db = mongoose.connect(appConfig.db.uri);
+  let db = mongoose.connect(appConfig.db.uri, { useNewUrlParser: true})
+  // then(() => {
+  //   console.log('connection successfully!!')
+  // }).catch(() => {
+  //   console.log('some error occured!!')
+  // }); 
 }
 
 process.on('unhandledRejection', (reason, p) => {
@@ -142,6 +153,5 @@ mongoose.connection.on('open', function (err) {
   //process.exit(1)
 }); // enr mongoose connection open handler
 
-
-
 module.exports = app;
+
